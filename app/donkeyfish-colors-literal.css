@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font is loaded via next/font/google in layout.tsx */
+
+/* Donkey Fish Color Variables */
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 255, 255, 255;
+  --donkey-brown: 139, 79, 15;
+  --fish-green: 34, 197, 94;
+  --ocean-blue: 14, 165, 233;
+  --meme-yellow: 255, 215, 0;
+  --meme-orange: 255, 140, 0;
+  --meme-pink: 255, 105, 180;
+  --water-blue: 135, 206, 235;
+  --seaweed-green: 46, 125, 50;
+  --coral-orange: 255, 127, 80;
+}
+
+
