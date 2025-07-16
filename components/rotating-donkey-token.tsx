@@ -88,7 +88,7 @@ export function RotatingDonkeyToken() {
       ctx.shadowBlur = 0
       ctx.font = "bold 26px Comic Neue, sans-serif"
       ctx.fillStyle = "#000"
-      ctx.fillText("$DONK", 0, 50)
+      ctx.fillText("$DFK", 0, 50)
 
       ctx.restore()
 
