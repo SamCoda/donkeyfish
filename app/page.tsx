@@ -519,7 +519,6 @@ export default function Home() {
               <span className="meme-text">$DONK TO THE MOON!</span> 🚀🐴🐟
             </div>
           </div>
-
           <div className="text-sm text-white/70 mt-12 font-bold">
             © 2025 Donkey Fish. All rights reserved. Don't be a jackass - this is not financial advice!
           </div>
