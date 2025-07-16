@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import {
   Fish,
@@ -19,17 +19,23 @@ import {
   X,
   Star,
   Heart,
+  Volume2,
+  VolumeX,
 } from "lucide-react"
 import { DonkeyFishHero } from "../components/donkey-fish-hero"
 import { DonkeyFishSlideshow } from "../components/donkey-fish-slideshow"
 import { DonkeyFishGallery } from "../components/donkey-fish-gallery"
 import { RotatingDonkeyToken } from "../components/rotating-donkey-token"
+import { ToxicGallery } from "@/components/toxic-gallery"
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrollPosition, setScrollPosition] = useState(0)
   const [tokenPrice, setTokenPrice] = useState(0.000042)
   const [holders, setHolders] = useState(6969)
+  const [isMuted, setIsMuted] = useState(false)
+  const audioRef = useRef<HTMLAudioElement>(null)
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,6 +53,16 @@ export default function Home() {
       setHolders((prev) => prev + Math.floor(Math.random() * 3) + 1)
     }, 5000)
 
+    const audio = audioRef.current
+  if (audio) {
+    audio.volume = 0.3
+    audio.loop = true
+    audio.play().catch((e) => {
+      // Some browsers block autoplay without user interaction
+      console.warn("Autoplay blocked:", e)
+    })
+  }
+
     window.addEventListener("scroll", handleScroll)
 
     return () => {
@@ -56,43 +72,18 @@ export default function Home() {
     }
   }, [])
 
+  const toggleMute = () => {
+  const audio = audioRef.current
+  if (audio) {
+    audio.muted = !audio.muted
+    setIsMuted(audio.muted)
+  }
+}
+
+
   return (
-    <div className="flex flex-col min-h-screen text-white">
-      {/* Ticker Tape (optional, enable when ready) */}
-      {/*
-      <div className="bg-black py-2 overflow-hidden border-b-4 border-meme-yellow comic-border z-10">
-        <div className="marquee">
-          <div className="marquee-content">
-            <span className="inline-flex items-center gap-6 px-4 text-lg font-bold">
-              <span className="flex items-center gap-2">
-                <span className="meme-text">$DONK:</span>
-                <span className="text-white">${tokenPrice.toFixed(8)}</span>
-                <span className={tokenPrice > 0.000042 ? "text-fish-green" : "text-meme-pink"}>
-                  {tokenPrice > 0.000042 ? "🚀" : "🐴"}
-                </span>
-              </span>
-              <span className="text-meme-orange">|</span>
-              <span className="flex items-center gap-2">
-                <Fish className="w-5 h-5 text-ocean-blue" />
-                <span>SWIMMING TO THE MOON!</span>
-              </span>
-              <span className="text-meme-orange">|</span>
-              <span className="flex items-center gap-2">
-                <Users className="w-5 h-5 text-fish-green" />
-                <span>HOLDERS: {holders.toLocaleString()}</span>
-              </span>
-              <span className="text-meme-orange">|</span>
-              <span className="flex items-center gap-2">
-                <Crown className="w-5 h-5 text-meme-yellow" />
-                <span>DON'T BE A JACKASS!</span>
-              </span>
-              <span className="text-meme-orange">|</span>
-              <span className="meme-text">DONKEY FISH - THE MOST RIDICULOUS MEME COIN EVER!</span>
-            </span>
-          </div>
-        </div>
-      </div>
-      */}
+    <div className="flex flex-col min-h-screen text-white">    
+    <audio ref={audioRef} src="/Donkey-FishAnthem.wav" preload="auto" />
 
       {/* Navigation */}
       <header
@@ -123,9 +114,19 @@ export default function Home() {
             </button>
           </div>
 
-          <Link href="#" className="hidden md:inline-block donkey-button">
-            Buy $DONK
-          </Link>
+          <div className="flex items-center gap-4">
+  <button
+    onClick={toggleMute}
+    className="text-meme-yellow hover:text-white transition-colors"
+    aria-label="Toggle Music"
+  >
+    {isMuted ? <VolumeX className="h-6 w-6" /> : <Volume2 className="h-6 w-6" />}
+  </button>
+
+  <Link href="#" className="hidden md:inline-block donkey-button">
+    Buy $DONK
+  </Link>
+</div>
         </div>
 
         {mobileMenuOpen && (
@@ -467,6 +468,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <ToxicGallery />
 
       {/* Community Section */}
       <section className="py-16 relative overflow-hidden bg-bubbles">
