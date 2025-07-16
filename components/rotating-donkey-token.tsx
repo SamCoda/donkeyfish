@@ -25,57 +25,81 @@ export function RotatingDonkeyToken() {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       rotation += rotationSpeed
 
+      // Simulate 3D rim rotation (thickness with shading)
+      const rimLayers = 14
+      for (let i = 0; i < rimLayers; i++) {
+        ctx.save()
+        ctx.translate(centerX, centerY + i * 0.8)
+        ctx.beginPath()
+        ctx.arc(0, 0, radius - i * 0.2, 0, Math.PI * 2)
+        ctx.strokeStyle = `rgba(139, 79, 15, ${1 - i / rimLayers})`
+        ctx.lineWidth = 2
+        ctx.stroke()
+        ctx.restore()
+      }
+
       ctx.save()
       ctx.translate(centerX, centerY)
       ctx.rotate(rotation)
 
-      // Main coin body with gradient
-      const gradient = ctx.createRadialGradient(0, 0, radius * 0.8, 0, 0, radius)
-      gradient.addColorStop(0, "#ffd700") // Gold center
-      gradient.addColorStop(0.7, "#ff8c00") // Orange middle
-      gradient.addColorStop(1, "#8b4f0f") // Brown edge
+      // Coin face with metallic gold gradient
+      const faceGradient = ctx.createRadialGradient(0, 0, radius * 0.1, 0, 0, radius)
+      faceGradient.addColorStop(0, "#fffed6") // light shimmer
+      faceGradient.addColorStop(0.3, "rgb(255, 215, 0)") // meme-yellow
+      faceGradient.addColorStop(0.6, "rgb(255, 140, 0)") // meme-orange
+      faceGradient.addColorStop(1, "rgb(139, 79, 15)") // donkey-brown
 
       ctx.beginPath()
       ctx.arc(0, 0, radius, 0, Math.PI * 2)
-      ctx.fillStyle = gradient
+      ctx.fillStyle = faceGradient
       ctx.fill()
 
-      // Outer ring
+      // Inner border
       ctx.beginPath()
-      ctx.arc(0, 0, radius, 0, Math.PI * 2)
-      ctx.lineWidth = 6
+      ctx.arc(0, 0, radius - 3, 0, Math.PI * 2)
+      ctx.lineWidth = 5
       ctx.strokeStyle = "#000"
       ctx.stroke()
 
-      // Inner "D" for Donkey
-      ctx.font = "bold 120px Comic Neue"
-      ctx.fillStyle = "#000"
+      // Gloss highlight (top left glow)
+      const gloss = ctx.createRadialGradient(-40, -40, 5, -40, -40, 120)
+      gloss.addColorStop(0, "rgba(255,255,255,0.5)")
+      gloss.addColorStop(1, "rgba(255,255,255,0)")
+
+      ctx.beginPath()
+      ctx.arc(0, 0, radius, 0, Math.PI * 2)
+      ctx.fillStyle = gloss
+      ctx.fill()
+
+      // Central "D"
+      ctx.font = "bold 120px Comic Neue, sans-serif"
+      ctx.fillStyle = "#111"
       ctx.textAlign = "center"
       ctx.textBaseline = "middle"
       ctx.fillText("D", 0, 0)
 
-      // Glow effect
-      ctx.shadowColor = "#ffd700"
-      ctx.shadowBlur = 20
+      ctx.shadowColor = "rgb(255, 215, 0)"
+      ctx.shadowBlur = 25
       ctx.lineWidth = 3
-      ctx.strokeStyle = "#ffd700"
+      ctx.strokeStyle = "rgb(255, 215, 0)"
       ctx.strokeText("D", 0, 0)
 
-      // Small text for "DONK"
-      ctx.font = "bold 24px Comic Neue"
+      // Label
+      ctx.shadowBlur = 0
+      ctx.font = "bold 26px Comic Neue, sans-serif"
       ctx.fillStyle = "#000"
-      ctx.shadowBlur = 10
-      ctx.fillText("$DKF", 0, 50)
+      ctx.fillText("$DONK", 0, 50)
 
       ctx.restore()
 
-      // 3D effect (side of coin)
+      // Bottom 3D ellipse to enhance realism
+      const ellipseHeight = 10 + Math.abs(Math.sin(rotation) * 8)
       ctx.beginPath()
-      ctx.ellipse(centerX, centerY + radius * 0.1, radius, radius * 0.1, 0, 0, Math.PI * 2)
-      ctx.fillStyle = "#8b4f0f"
+      ctx.ellipse(centerX, centerY + radius + 6, radius, ellipseHeight, 0, 0, Math.PI * 2)
+      ctx.fillStyle = "rgb(139, 79, 15)" // donkey brown
       ctx.fill()
       ctx.strokeStyle = "#000"
-      ctx.lineWidth = 3
+      ctx.lineWidth = 2
       ctx.stroke()
 
       requestAnimationFrame(animate)
@@ -84,5 +108,10 @@ export function RotatingDonkeyToken() {
     animate()
   }, [])
 
-  return <canvas ref={canvasRef} className="w-[300px] h-[300px] drop-shadow-2xl" />
+  return (
+    <canvas
+      ref={canvasRef}
+      className="w-[300px] h-[300px] drop-shadow-[0_10px_15px_rgba(0,0,0,0.5)]"
+    />
+  )
 }
