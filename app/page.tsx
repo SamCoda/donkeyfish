@@ -53,14 +53,16 @@ export default function Home() {
       setHolders((prev) => prev + Math.floor(Math.random() * 3) + 1)
     }, 5000)
 
-    const audio = audioRef.current
+const audio = audioRef.current
   if (audio) {
     audio.volume = 0.3
     audio.loop = true
-    audio.play().catch((e) => {
-      // Some browsers block autoplay without user interaction
-      console.warn("Autoplay blocked:", e)
-    })
+
+    if (audio.muted) {
+      audio.play().catch((e) => {
+        console.warn("Autoplay blocked:", e)
+      })
+    }
   }
 
     window.addEventListener("scroll", handleScroll)
@@ -80,10 +82,28 @@ export default function Home() {
   }
 }
 
+useEffect(() => {
+  const saved = localStorage.getItem("donk-muted")
+  if (saved !== null) {
+    const shouldBeMuted = JSON.parse(saved)
+    setIsMuted(shouldBeMuted)
+    if (audioRef.current) {
+      audioRef.current.muted = shouldBeMuted
+    }
+  }
+}, [])
+
+useEffect(() => {
+  localStorage.setItem("donk-muted", JSON.stringify(isMuted))
+}, [isMuted])
+
+
+
 
   return (
     <div className="flex flex-col min-h-screen text-white">    
-    <audio ref={audioRef} src="/Donkey-FishAnthem.wav" preload="auto" />
+    <audio ref={audioRef} src="/Donkey-FishAnthem.wav" preload="auto" muted />
+    
 
       {/* Navigation */}
       <header
@@ -115,13 +135,26 @@ export default function Home() {
           </div>
 
           <div className="flex items-center gap-4">
-  <button
-    onClick={toggleMute}
-    className="text-meme-yellow hover:text-white transition-colors"
-    aria-label="Toggle Music"
-  >
-    {isMuted ? <VolumeX className="h-6 w-6" /> : <Volume2 className="h-6 w-6" />}
-  </button>
+<button
+  onClick={() => {
+    const audio = audioRef.current
+    if (!audio) return
+
+    if (isMuted) {
+      audio.muted = false
+      audio.play().catch((err) => console.warn("Play error:", err))
+    } else {
+      audio.pause()
+      audio.muted = true
+    }
+
+    setIsMuted(!isMuted)
+  }}
+  className="text-meme-yellow ml-4"
+>
+  {isMuted ? <VolumeX className="h-6 w-6" /> : <Volume2 className="h-6 w-6" />}
+</button>
+
 
   <Link href="#" className="hidden md:inline-block donkey-button">
     Buy $DONK
