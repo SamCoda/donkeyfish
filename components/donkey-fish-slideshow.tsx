@@ -14,7 +14,7 @@ const slides = [
     bgClass: "bg-ocean-blue",
   },
   {
-    src: "/placeholder.svg?height=400&width=400",
+    src: "/images/gallery6.png?height=400&width=400",
     alt: "Rich Donkey Fish",
     icon: <Coins className="w-8 h-8 text-meme-yellow" />,
     title: "Wealthy Donkey Fish",
@@ -22,7 +22,7 @@ const slides = [
     bgClass: "bg-fish-green",
   },
   {
-    src: "/placeholder.svg?height=400&width=400",
+    src: "/images/gallery7.png?height=400&width=400",
     alt: "Super Donkey Fish",
     icon: <Zap className="w-8 h-8 text-meme-orange" />,
     title: "Super Donkey Fish",
@@ -30,7 +30,7 @@ const slides = [
     bgClass: "bg-donkey-brown",
   },
   {
-    src: "/placeholder.svg?height=400&width=400",
+    src: "/images/gallery4.png?height=400&width=400",
     alt: "Swimming Donkey Fish",
     icon: <Fish className="w-8 h-8 text-ocean-blue" />,
     title: "Swimming Champion",
