@@ -296,7 +296,7 @@ export default function Home() {
             </div>
 
             {/* Contract Box */}
-        <div className="underwater-glass p-4 rounded-lg flex items-center justify-between gap-3 text-sm sm:text-base">
+        {/* <div className="underwater-glass p-4 rounded-lg flex items-center justify-between gap-3 text-sm sm:text-base">
           <div className="flex gap-5">
           <span className="truncate meme-text">Contract Address:</span>
           <span className="truncate text-black">{contractAddress}</span>
@@ -309,7 +309,7 @@ export default function Home() {
             <Copy className="w-4 h-4 text-white" />
           </button>
         </div>
-        {copied && <p className="text-green-400 text-sm">Copied!</p>}
+        {copied && <p className="text-green-400 text-sm">Copied!</p>} */}
           </div>
 
           {/* Hero Image */}
