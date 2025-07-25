@@ -37,7 +37,7 @@ export default function Home() {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const [copied, setCopied] = useState(false)
-  const contractAddress = "Coming Soon..."
+  const contractAddress = "3wAMGrJpPvFcSyG3YeBS7zduvqrrAC1kRTQHeEZxpump"
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(contractAddress)
