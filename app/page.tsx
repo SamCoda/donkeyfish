@@ -263,7 +263,7 @@ export default function Home() {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
-              <Link href="#" className="donkey-button flex items-center gap-2">
+              <Link href="https://t.me/DONKEYFISHDKF" className="donkey-button flex items-center gap-2">
                 <Fish className="w-5 h-5" />
                 <span>Join The School</span>
               </Link>
