@@ -614,7 +614,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto">
             <Link
-              href="#"
+              href="https://t.me/DONKEYFISHDKF"
               className="bg-blue-500 text-white p-6 rounded-xl hover:bg-blue-600 transition-all shadow-lg flex flex-col items-center justify-center gap-3 transform hover:scale-105 comic-border"
             >
               <MessageCircle className="w-10 h-10 text-blue-600" />
@@ -623,7 +623,7 @@ export default function Home() {
             </Link>
 
             <Link
-              href="#"
+              href="https://x.com/DONKEYFISHDKF"
               className="bg-black text-white p-6 rounded-xl hover:bg-gray-800 transition-all shadow-lg flex flex-col items-center justify-center gap-3 transform hover:scale-105 border-4 border-meme-yellow comic-border"
             >
               <Twitter className="w-10 h-10 text-meme-yellow" />
