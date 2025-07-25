@@ -9,7 +9,7 @@ const comicNeue = Comic_Neue({
 });
 
 export const metadata: Metadata = {
-  title: "Donkey Fish | $DFK | Don't Be A Jackass, Buy & HODL!",
+  title: "Donkey Fish | $DKF | Don't Be A Jackass, Buy & HODL!",
   description:
     "The most ridiculous meme coin on Solana! Part donkey, part fish, 100% gains! Don't be a jackass - join the school!",
   generator: "sam dev",

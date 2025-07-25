@@ -21,6 +21,7 @@ import {
   Heart,
   Volume2,
   VolumeX,
+  Copy,
 } from "lucide-react";
 import { DonkeyFishHero } from "../components/donkey-fish-hero";
 import { DonkeyFishSlideshow } from "../components/donkey-fish-slideshow";
@@ -36,6 +37,15 @@ export default function Home() {
   const [holders, setHolders] = useState(6969);
   const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
+
+  const [copied, setCopied] = useState(false)
+  const contractAddress = "Coming Soon..."
+
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(contractAddress)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -168,7 +178,7 @@ export default function Home() {
             </button>
 
             <Link href="#" className="hidden md:inline-block donkey-button">
-              Buy $DFK
+              Buy $DKF
             </Link>
           </div>
         </div>
@@ -193,7 +203,7 @@ export default function Home() {
                 className="block px-3 py-2 rounded-md text-base font-medium bg-meme-yellow text-black mt-4 text-center"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Buy $DFK
+                Buy $DKF
               </Link>
             </div>
           </div>
@@ -212,7 +222,7 @@ export default function Home() {
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight">
               <span className="meme-text animate-meme-pulse block">DONKEY</span>
               <span className="fish-text animate-fish-wiggle block">FISH</span>
-              <span className="ocean-text block">$DFK</span>
+              <span className="ocean-text block">$DKF</span>
             </h1>
 
             <div className="bg-black/80 p-4 rounded-xl comic-border inline-block max-w-full">
@@ -261,7 +271,7 @@ export default function Home() {
               </Link>
               <Link href="#" className="fish-button flex items-center gap-2">
                 <Crown className="w-5 h-5" />
-                <span>Buy $DFK</span>
+                <span>Buy $DKF</span>
               </Link>
             </div>
 
@@ -284,6 +294,22 @@ export default function Home() {
                 <div className="text-xs text-gray-900 font-bold">Power</div>
               </div>
             </div>
+
+            {/* Contract Box */}
+        <div className="underwater-glass p-4 rounded-lg flex items-center justify-between gap-3 text-sm sm:text-base">
+          <div className="flex gap-5">
+          <span className="truncate meme-text">Contract Address:</span>
+          <span className="truncate text-black">{contractAddress}</span>
+          </div>
+          <button
+            onClick={handleCopy}
+            className="bg-white/10 hover:bg-white/20 p-2 rounded-full transition"
+            title="Copy Address"
+          >
+            <Copy className="w-4 h-4 text-white" />
+          </button>
+        </div>
+        {copied && <p className="text-green-400 text-sm">Copied!</p>}
           </div>
 
           {/* Hero Image */}
@@ -322,7 +348,7 @@ export default function Home() {
                 <span className="ocean-text">Token Ever! 🤪</span>
               </h2>
               <p className="text-white/90 text-lg font-bold">
-                $DFK isn't just another meme coin - it's a LEGENDARY hybrid that
+                $DKF isn't just another meme coin - it's a LEGENDARY hybrid that
                 shouldn't exist but does! Part stubborn donkey, part slippery
                 fish, 100% designed to make you rich while laughing your ass
                 off! 🐴🐟💰
@@ -515,7 +541,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-6">
             <span className="meme-text">How To Buy</span>{" "}
-            <span className="fish-text">$DFK</span>
+            <span className="fish-text">$DKF</span>
           </h2>
           <p className="text-center text-white/90 max-w-2xl mx-auto mb-12 text-lg font-bold">
             Don't be a jackass! Follow these simple steps to join the school!
@@ -544,10 +570,10 @@ export default function Home() {
                 02
               </div>
               <h3 className="text-2xl font-bold mb-4 mt-4 fish-text">
-                Swap For $DFK 🔄
+                Swap For $DKF 🔄
               </h3>
               <p className="text-gray-900 font-bold">
-                Use Jupiter, Raydium, or Orca to swap your SOL for $DFK. Easy as
+                Use Jupiter, Raydium, or Orca to swap your SOL for $DKF. Easy as
                 feeding a fish! 🐟
               </p>
               <div className="mt-4 flex justify-center">
@@ -563,7 +589,7 @@ export default function Home() {
                 HODL & Enjoy! 🚀
               </h3>
               <p className="text-gray-900  font-bold">
-                Hold your $DFK like a stubborn donkey and watch it swim to the
+                Hold your $DKF like a stubborn donkey and watch it swim to the
                 moon! 🌙
               </p>
               <div className="mt-4 flex justify-center">
@@ -624,7 +650,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="mb-8">
             <div className="inline-block underwater-glass px-6 py-3 rounded-full text-xl font-bold mb-4 animate-meme-pulse comic-border">
-              <span className="meme-text">$DFK TO THE MOON!</span> 🚀🐴🐟
+              <span className="meme-text">$DKF TO THE MOON!</span> 🚀🐴🐟
             </div>
           </div>
           <div className="text-sm text-white/70 mt-12 font-bold">
@@ -633,7 +659,7 @@ export default function Home() {
           </div>
 
           <div className="mt-4 text-xs text-white/70 font-bold">
-            $DFK is a meme coin with no intrinsic value. Only invest what you
+            $DKF is a meme coin with no intrinsic value. Only invest what you
             can afford to lose, you beautiful jackass! 🐴❤️
           </div>
         </div>
